@@ -2,6 +2,10 @@
 
 Yannik Angeli, Nils Kubousek, Lukas Richter, Diego Rubio Carrera
 
+**Datum:** 2024-04-25
+
+Diese Dokumentation ist auch als PDF verfügbar: [Dokumentation.pdf](./Dokumentation.pdf)
+
 **Inhaltsverzeichnis:**
 
 - [Dokumentation Programmentwurf 1](#dokumentation-programmentwurf-1)
@@ -26,16 +30,21 @@ Dieses Projekt implementiert ein zweischichtiges, vorwärtsgetriebenes neuronale
 ## Architektur
 
 Das neuronale Netzwerk besteht aus drei Schichten:
+
 - **Eingabeschicht**: Nimmt binäre Eingaben entgegen, die Wahrheitswerte repräsentieren (-1 für falsch, 1 für wahr)
+
 - **Zwischenschicht**: Enthält Neuronen, die Monome (Konjunktionen von Literalen) darstellen
+
 - **Ausgabeschicht**: Ein einzelnes Neuron, das die gesamte DNF-Formel (Disjunktion von Monomen) repräsentiert
+
 
 ## Codestruktur
 
-Das Projekt ist in mehrere Module organisiert:
+Das Projekt ist in mehrere Module organisiert, welche sich im Verzeichnis `src` befinden:
 
 ### `net.py`
 Enthält die zentrale `DNFNet`-Klasse, die das neuronale Netzwerk implementiert. Zu den Hauptfunktionen gehören:
+
 1. `__init__(self, input_length: int = 10, num_monomers: int = 5, learning_rate: float = 0.1)`: Initialisierung mit konfigurierbarer Eingabegröße, Anzahl der Monome und Lernrate
 
 2. `inference(self, inputs: list[int]) -> tuple[int, list[int]]`: Vorwärtspropagation zur Berechnung der Netzwerkausgabe
@@ -56,17 +65,26 @@ Enthält die zentrale `DNFNet`-Klasse, die das neuronale Netzwerk implementiert.
 
 ### `train.py`
 Implementiert die überwachte Trainingsfunktionalität durch die `supervised_train`-Funktion, die:
+
 - Ein korrektes Netzwerk (Referenz)
+
 - und ein Trainingsnetzwerk entgegennimmt
+
 - sowie die Spezifizierung eines Epochenlimits erlaubt
+
 - Das Netzwerk iterativ mit allen möglichen Eingabekombinationen trainiert, wobei die korrekte Ausgabe durch das übergebene `correct_net` berechnet wird
+
 - Die Anzahl der falschen Netzwerkvorhersagen pro Epoche verfolgt
+
 - Fehler auf Monomerebene für detaillierte Analysen überwacht
+
   - Dabei ist zu beachten, dass die Reihenfolge der Monome im Trainingsnetzwerk nicht zwingend mit der des Referenznetzwerks übereinstimmen muss, die hier erfassten Werte also begrenzte Aussagekraft haben
+  
 - Konvergenzkriterien und Maximallimits für Epochen implementiert - erfolgt eine gesamte Epoche ohne Aktualisierung der Gewichte, wird die Konvergenz als erreicht angesehen und das Netzwerk nicht weiter trainiert. Anderenfalls wird es bis zum Erreichen des Epochenlimits trainiert.
 
 ### `helpers.py`
 Bietet Hilfsfunktionen:
+
 1. `random_adjustment(factor: float = 1) -> float`: Gibt einen zufälligen Wert zwischen -1 und 1 oder -`factor` und `factor` zurück
 
 2. `plot_network_results(network_misses: list[int|float]) -> None`: Erstellt ein Diagramm der Netzwerkfehler pro Epoche
@@ -89,35 +107,59 @@ Das Netzwerk wird grundsätzlich mit zufälligen Parametern initialisiert. Spezi
 
 ### Inferenz
 Während der Vorwärtspropagation:
+
 1. Eingangssignale werden an jedem Monomerneuron gewichtet und summiert
+
    - Die Vorzeichenfunktion wird angewendet
+   
 2. Monomerausgaben werden am Ausgabeneuron gewichtet und kombiniert
+
    - Die Vorzeichenfunktion wird angewendet
+   
 3. Die endgültige Ausgabe repräsentiert den Wahrheitswert der Formel, die durch das Netzwerk dargestellt wird
 
 
 Mathematisch ausgedrückt gilt also:
+
 - $n$ Aussagenvariablen $x_1, \dots, x_n$ (Eingangsneuronen)
+
 - Werte $-1$ (falsch) und $1$ (wahr)
+
 - $m$ Monome $z_1, \dots, z_m$ (Neuronen in Zwischenschicht)
+
 - Ein Ausgabeneuron $y$
+
 - Aktivierungsfunktion $sgn(x) = \begin{cases} 1 & x \geq 0 \\ -1 & x < 0 \end{cases}$
+
 - Propagation in Vektorform:
+
   - $\vec{z} = sgn(w\cdot \vec{x} - \vec{v})$
+  
   - $y = sgn(W \cdot \vec{z} - V)$
+  
   - mit Gewichtsmatrizen: 
+  
     - $w \in \mathbb{R}^{m \times n}$
+    
     - $W \in \mathbb{R}^{1 \times m}$
+    
   - und Schwellwerten:
+  
     - $\vec{v} \in \mathbb{R}^{m}$
+    
     - $V \in \mathbb{R}$
 
 ### Training
 Der Backpropagation-Algorithmus aktualisiert die Gewichte folgendermaßen:
+
 - Lernalgorithmus mit Zielmuster $p$ und Lernrate $\eta$:
-  - $\Delta W_{1j} = \mu \cdot (p-y)\cdot z_j$
+
+ - $\Delta W_{1j} = \mu \cdot (p-y)\cdot z_j$
+ 
   - $\Delta w_{jk} = \mu \cdot W_{1j}\cdot (p-y) \cdot x_k$
+  
   - $\Delta V = - \mu \cdot (p-y)$
+  
   - $\Delta v_{j} = - \mu \cdot (p-y) \cdot W_{1j}$
 
 
@@ -125,9 +167,13 @@ Der Backpropagation-Algorithmus aktualisiert die Gewichte folgendermaßen:
 ## Verwendung
 
 Das Netzwerk in `net.py` und die Module `helpers.py` sowie `train.py` können verwendet werden, um:
+
 1. Eine DNF-Formel direkt mit berechneten Gewichten zu implementieren
+
 2. Eine DNF-Formel durch überwachtes Training zu lernen, wobei jedoch bereits Kenntnis über die korrekten Parameter vorausgesetzt wird, sodass das Referenzmodell erstellt werden kann
+
 3. Die Lernleistung mit verschiedenen Parametern zu vergleichen
+
 4. Den Lernprozess und die Netzwerkkonvergenz zu visualisieren
 
 ## Beispiel
