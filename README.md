@@ -10,6 +10,7 @@ Diese Dokumentation ist auch als PDF verfügbar in der Datei Dokumentation.pdf
 
 - [Dokumentation Programmentwurf 1](#dokumentation-programmentwurf-1)
   - [Projektübersicht](#projektübersicht)
+  - [Abhängigkeiten](#abhängigkeiten)
   - [Architektur](#architektur)
   - [Codestruktur](#codestruktur)
     - [`net.py`](#netpy)
@@ -26,6 +27,16 @@ Diese Dokumentation ist auch als PDF verfügbar in der Datei Dokumentation.pdf
 ## Projektübersicht
 
 Dieses Projekt implementiert ein zweischichtiges, vorwärtsgetriebenes neuronales Netzwerk, das disjunktive Normalform (DNF)-Formeln der Aussagenlogik realisieren kann. Die Implementierung umfasst eine Netzwerkarchitektur, die logische Operationen auf Gewichte und Schwellenwerte des neuronalen Netzes abbildet, sowie einen Backpropagation-Algorithmus für das Training.
+
+## Abhängigkeiten
+
+Um eine fehlerfreie Verwendung sicherzustelle, müssen die in `requirements.txt` dokumentierten Abhängigkeiten installiert werden.
+
+Hierzu muss im Wurzelverzeichnis des Projekts folgender Befehl ausgeführt werden:
+
+~~~console
+pip install -r requirements.txt
+~~~
 
 ## Architektur
 
