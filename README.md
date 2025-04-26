@@ -28,6 +28,8 @@ Diese Dokumentation ist auch als PDF verfügbar in der Datei Dokumentation.pdf
 
 Dieses Projekt implementiert ein zweischichtiges, vorwärtsgetriebenes neuronales Netzwerk, das disjunktive Normalform (DNF)-Formeln der Aussagenlogik realisieren kann. Die Implementierung umfasst eine Netzwerkarchitektur, die logische Operationen auf Gewichte und Schwellenwerte des neuronalen Netzes abbildet, sowie einen Backpropagation-Algorithmus für das Training.
 
+Die Tests zu den Aufgaben des Programmentwurfs werden im Jupyter Notebook `Tests.ipynb` durchgeführt und dokumentiert.
+
 ## Abhängigkeiten
 
 Um eine fehlerfreie Verwendung sicherzustelle, müssen die in `requirements.txt` dokumentierten Abhängigkeiten installiert werden.
