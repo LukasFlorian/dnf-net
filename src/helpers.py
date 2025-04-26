@@ -14,7 +14,7 @@ def random_adjustment(factor: float = 1) -> float:
 
 def plot_network_results(network_misses: list[int|float]) -> None:
     """
-    Plots the number of misses per epoch.
+    Plots the number of network misses per epoch.
     """
     plt.xlabel('Epoch number')
     plt.ylabel('Network misses')
@@ -29,7 +29,7 @@ def plot_network_results(network_misses: list[int|float]) -> None:
 
 def plot_monomer_results(monomer_misses_per_epoch: list[list[int|float]]) -> None:
     """
-    Plots the number of misses per epoch.
+    Plots the number of monomer misses per epoch.
     """
     plt.xlabel("Epoch")
     plt.ylabel("Monomer misses")
@@ -66,8 +66,8 @@ def visualize_results(network_misses: list[int], monomer_misses_per_epoch: list[
 
 def plot_combined_sma(incorrect_per_epoch: list[int], monomer_misses_per_epoch: list[list[int]], window: int) -> None:
     """
-    Calculates the simple moving average of a series.
-    """    
+    Plots the SMA of the network's and each monomer's number of misses per epoch.
+    """
     plt.xlabel("Epoch")
     plt.ylabel(f"SMA-{window} of the Monomer and network misses")
     plt.title("Number of monomer and network misses per epoch")

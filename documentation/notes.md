@@ -20,11 +20,11 @@ Aussagenlogische Formel in DNF kann durch zweischichtiges, vorwärtsgetriebenes 
   - und Schwellwerten:
     - $\vec{v} \in \mathbb{R}^{m}$
     - $V \in \mathbb{R}$
-- Lernalgorithmus mit Zielmuster $p$ und Lernrate $\mu$:
-  - $\Delta W_{1j} = \mu \cdot (p-y)\cdot z_j$
-  - $\Delta w_{jk} = \mu \cdot W_{1j}\cdot (p-y) \cdot x_k$
-  - $\Delta V = - \mu \cdot (p-y)$
-  - $\Delta v_{j} = - \mu \cdot (p-y) \cdot W_{1j}$
+- Lernalgorithmus mit Zielmuster $p$ und Lernrate $\eta$:
+  - $\Delta W_{1j} = \eta \cdot (p-y)\cdot z_j$
+  - $\Delta w_{jk} = \eta \cdot W_{1j}\cdot (p-y) \cdot x_k$
+  - $\Delta V = - \eta \cdot (p-y)$
+  - $\Delta v_{j} = - \eta \cdot (p-y) \cdot W_{1j}$
 
 
 
