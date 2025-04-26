@@ -4,7 +4,7 @@ Yannik Angeli, Nils Kubousek, Lukas Richter, Diego Rubio Carrera
 
 **Datum:** 2024-04-25
 
-Diese Dokumentation ist auch als PDF verfügbar: [Dokumentation.pdf](./Dokumentation.pdf)
+Diese Dokumentation ist auch als PDF verfügbar in der Datei Dokumentation.pdf
 
 **Inhaltsverzeichnis:**
 
