@@ -177,13 +177,16 @@ Das Netzwerk in `net.py` und die Module `helpers.py` sowie `train.py` können ve
 4. Den Lernprozess und die Netzwerkkonvergenz zu visualisieren
 
 ## Beispiel
+
+Der folgende Code demonstriert die Verwendung des Netzwerks und der Trainings- sowie Visualisierungsmodule und kann in der Datei `example.py` gefunden werden:
+
 ```python
 from src.net import DNFNet
 from src.train import supervised_train
 from src.helpers import visualize_results
 
 # Referenznetzwerk mit vorberechneten Gewichten erstellen
-correct_net = DNFNet(input_length=10, num_monomers=5)
+correct_model = DNFNet(input_length=10, num_monomers=5)
 
 
 # Parameter entsprechend der DNF-Formel setzen:
@@ -207,7 +210,11 @@ correct_model.output_bias = -3
 train_net = DNFNet(input_length=10, num_monomers=5, learning_rate=0.1)
 
 # Netzwerk trainieren
-incorrect_per_epoch, monomer_misses = supervised_train(correct_net, train_net)
+incorrect_per_epoch, monomer_misses = supervised_train(
+    correct_model,
+    train_net,
+    max_epochs=1000
+)
 
 # Ergebnisse visualisieren
 visualize_results(incorrect_per_epoch, monomer_misses)
