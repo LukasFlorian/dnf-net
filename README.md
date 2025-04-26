@@ -89,7 +89,7 @@ Implementiert die überwachte Trainingsfunktionalität durch die `supervised_tra
 
 - Die Anzahl der falschen Netzwerkvorhersagen pro Epoche verfolgt
 
-- Fehler auf Monomerebene für detaillierte Analysen überwacht
+- Fehler auf Monomebene für detaillierte Analysen überwacht
 
   - Dabei ist zu beachten, dass die Reihenfolge der Monome im Trainingsnetzwerk nicht zwingend mit der des Referenznetzwerks übereinstimmen muss, die hier erfassten Werte also begrenzte Aussagekraft haben
   
@@ -102,11 +102,11 @@ Bietet Hilfsfunktionen:
 
 2. `plot_network_results(network_misses: list[int|float]) -> None`: Erstellt ein Diagramm der Netzwerkfehler pro Epoche
 
-3. `plot_monomer_results(monomer_misses_per_epoch: list[list[int|float]]) -> None`: Erstellt ein Diagramm der Monomerfehler pro Epoche - wie in `supervised_train` erwähnt, mit begrenzter Aussagekraft
+3. `plot_monomer_results(monomer_misses_per_epoch: list[list[int|float]]) -> None`: Erstellt ein Diagramm der Monomfehler pro Epoche - wie in `supervised_train` erwähnt, mit begrenzter Aussagekraft
 
 4. `sma(series: list[int], window: int) -> list[float]`: Berechnet den gleitenden Durchschnitt (SMA) über eine bestimmte Fenstergröße in einer Zeitreihe
 
-5. `plot_combined_sma(incorrect_per_epoch: list[int], monomer_misses_per_epoch: list[list[int]], window: int) -> None`: Erstellt ein Diagramm des gleitenden Durchschnitts der Netzwerk- und Monomerfehler pro Epoche
+5. `plot_combined_sma(incorrect_per_epoch: list[int], monomer_misses_per_epoch: list[list[int]], window: int) -> None`: Erstellt ein Diagramm des gleitenden Durchschnitts der Netzwerk- und Monomfehler pro Epoche
 
 6. `visualize_results(network_misses: list[int], monomer_misses_per_epoch: list[list[int]], window: int = 100) -> None`: Visualisiert die Ergebnisse des Trainings mit Hilfe der obigen drei Funktionen
 
@@ -121,11 +121,11 @@ Das Netzwerk wird grundsätzlich mit zufälligen Parametern initialisiert. Spezi
 ### Inferenz
 Während der Vorwärtspropagation:
 
-1. Eingangssignale werden an jedem Monomerneuron gewichtet und summiert
+1. Eingangssignale werden an jedem Monomneuron gewichtet und summiert
 
    - Die Vorzeichenfunktion wird angewendet
    
-2. Monomerausgaben werden am Ausgabeneuron gewichtet und kombiniert
+2. Monomausgaben werden am Ausgabeneuron gewichtet und kombiniert
 
    - Die Vorzeichenfunktion wird angewendet
    
